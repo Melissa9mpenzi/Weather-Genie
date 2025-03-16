@@ -3,7 +3,7 @@ import { Cloud, MapPin, AlertCircle } from "lucide-react";
 import SearchBar from "./SearchBar";
 import WeatherCard from "./WeatherCard";
 import ForecastCard from "./ForecastCard";
-import GoogleMap from "./GoogleMap";
+import MapTilerMap from "./GoogleMap";
 import {
   getCurrentWeather,
   getForecast,
@@ -26,13 +26,13 @@ const WeatherGenie: React.FC = () => {
   // Check if API keys are set
   useEffect(() => {
     const openWeatherKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
-    const googleMapsKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+    const mapTilerKey = import.meta.env.VITE_MAPTILER_API_KEY;
 
     if (
       !openWeatherKey ||
       openWeatherKey === "YOUR_OPENWEATHERMAP_API_KEY" ||
-      !googleMapsKey ||
-      googleMapsKey === "YOUR_GOOGLE_MAPS_API_KEY"
+      !mapTilerKey ||
+      mapTilerKey === "YOUR_MAPTILER_API_KEY"
     ) {
       setApiKeyMissing(true);
     }
@@ -206,12 +206,12 @@ const WeatherGenie: React.FC = () => {
                   <li>
                     Create a{" "}
                     <a
-                      href="https://developers.google.com/maps/documentation/javascript/get-api-key"
+                      href="https://cloud.maptiler.com/account/keys/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-sky-700 underline"
                     >
-                      Google Maps API key
+                      MapTiler API key
                     </a>
                   </li>
                   <li>
@@ -223,7 +223,7 @@ const WeatherGenie: React.FC = () => {
                     <pre className="bg-amber-50 p-2 rounded mt-1 text-sm overflow-x-auto">
                       VITE_OPENWEATHER_API_KEY=your_openweather_key_here
                       <br />
-                      VITE_GOOGLE_MAPS_API_KEY=your_google_maps_key_here
+                      VITE_MAPTILER_API_KEY=your_maptiler_key_here
                     </pre>
                   </li>
                   <li>Restart the development server</li>
@@ -262,7 +262,7 @@ const WeatherGenie: React.FC = () => {
               <h2 className="text-xl font-semibold text-gray-800 mb-4">
                 Select Location on Map
               </h2>
-              <GoogleMap center={coordinates} onMapClick={handleMapClick} />
+              <MapTilerMap center={coordinates} onMapClick={handleMapClick} />
               <p className="text-sm text-gray-500 mt-2">
                 Click anywhere on the map to get weather information for that
                 location.
